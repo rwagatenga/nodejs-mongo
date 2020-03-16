@@ -1,4 +1,5 @@
 const Product = require('../models/product');
+const User = require('../models/user');
 
 // const Cart = require('../models/cart');
 // const Order = require('../models/order');
@@ -80,14 +81,15 @@ exports.getCart = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
-  
+  //const user = new User(req.user);
+
   Product.findById(prodId)
     .then(product => {
-      return req.user.addToCart(product);
-    })
-    .then(result => {
+        return req.user.addToCart(product);
+    }).then(result => {
       console.log(result);
-    }).catch(err => {
+    })
+    .catch(err => {
       console.log(err);
     });
   }
