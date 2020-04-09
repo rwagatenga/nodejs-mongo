@@ -1,4 +1,35 @@
-//--Using MongoDB--
+//----Using Mongoose--
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+
+const productSchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  imageUrl: {
+    type: String,
+    required: true
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
+});
+
+module.exports = mongoose.model('Product', productSchema);
+
+/* //--Using MongoDB--
 const mongodb = require('mongodb');
 const getDb = require('../util/database').getDb;
 
@@ -12,7 +43,7 @@ class Product {
     this.userId = userId;
 
   }
-  /* Save new Product or Update */
+  // Save new Product or Update 
   save() {
     const db = getDb();
     let dbOp;
@@ -29,7 +60,7 @@ class Product {
         });
     }
 
-    /* Fetch all Products */
+    // Fetch all Products 
     static fetchAll() {
         const db = getDb();
         return db.collection('products')
@@ -43,7 +74,7 @@ class Product {
             });        
     }
 
-    /* Fetch one Product */
+    // Fetch one Product 
     static findById(prodId) {
         const db = getDb();
         return db.collection('products')
@@ -73,4 +104,4 @@ class Product {
       }
 }
 
-module.exports = Product;
+module.exports = Product;*/
